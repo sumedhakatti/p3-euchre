@@ -91,15 +91,12 @@ public:
 
       // Sum contributions from each unique word (alphabetical via set)
       for (const string &w : words) {
-        // Only apply Naive Bayes likelihoods if the word appeared in training.
-        if (vocabulary_.count(w)) {
-          const double ll = log_likelihood(label, w);
+        const double ll = log_likelihood(label, w);
 #if DEBUG_SCORES
-          cerr << "[DBG] +" << ll << " from word '" << w
-               << "' for label '" << label << "'\n";
+        cerr << "[DBG] +" << ll << " from word '" << w
+             << "' for label '" << label << "'\n";
 #endif
-          score += ll;
-        }
+        score += ll;
       }
 
 #if DEBUG_SCORES
